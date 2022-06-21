@@ -1,0 +1,38 @@
+{
+    "name": "vue-template-webpack",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack",
+        "build": "webpack --config ./webpack.dev.config.js --progress",
+        "dev": "webpack-dev-server --open --config ./webpack.dev.config.js --progress"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.27.2",
+        "vant": "^3.5.1",
+        "vue": "^3.2.36",
+        "vue-cli": "^2.9.6",
+        "vue-router": "^4.0.13",
+        "vuex": "^4.0.2",
+        "webpack": "^5.73.0",
+        "webpack-dev-server": "^4.9.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.8",
+        "@babel/preset-env": "^7.16.11",
+        "@vue/compiler-sfc": "^3.2.33",
+        "babel-loader": "^8.0.5",
+        "css-loader": "^3.5.3",
+        "html-webpack-plugin": "^4.3.0",
+        "style-loader": "^1.2.1",
+        "vue": "^3.2.36",
+        "vue-cli": "^2.9.6",
+        "vue-loader": "^16.0.0-beta.4",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^4.9.2"
+    }
+}
