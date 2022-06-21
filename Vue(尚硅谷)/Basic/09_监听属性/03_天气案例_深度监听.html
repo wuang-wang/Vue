@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>深度监听</title>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <script src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="root">
+            <h3>a：{{numbers.a}}</h3>
+            <button @click="numbers.a++">a值累加</button>
+            <h3>b：{{numbers.b}}</h3>
+            <button @click="numbers.b++">a值累加</button>
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                numbers: {
+                    a: 1,
+                    b: 1,
+                },
+            },
+            // 方式一
+            watch: {
+                // 监听多级结构中某个属性的变化
+                /* 'numbers.a': {
+                    handler(newValue, oldValue) {
+                        console.log(newValue, oldValue);
+                    },
+                }, */
+                // 监听多级结构中所有属性的变化
+                numbers: {
+                    deep: true,  // 开启深度监视，默认为false
+                    handler(newValue, oldValue) {
+                        console.log('numbers发生变化');
+                    },
+                },
+            },
+        });
+    </script>
+</html>

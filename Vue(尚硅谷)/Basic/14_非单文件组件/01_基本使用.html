@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>非单文件组件</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+    // 创建组件
+    const school = Vue.extend({
+        //  el: '#root',    组件定义时，一定不要写el配置项，因为最终所有的组件都要被一个vm管理，由vm决定服务于哪个服务器
+        template: `
+            <div>
+                <h2>学校名称：{{name}}</h2>
+                <h2>学校地址：{{address}}</h2>
+            </div>
+        `,
+        data() {
+            return {
+                name: '清华大学',
+                address: '北京'
+            }
+        }
+    });
+    new Vue({
+        el: '#root',
+        data: {
+
+        },
+        // 组件注册
+        components: {
+            school: school
+        }
+    })
+</script>
+
+</html>

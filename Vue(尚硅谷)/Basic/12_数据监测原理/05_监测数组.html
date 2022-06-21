@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vue.set()的使用</title>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <script src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="root">
+            <h3>学生姓名： {{student.name}}</h3>
+            <h3>学生年龄： {{student.age}}</h3>
+            <h4>爱好：</h4>
+            <li v-for="(h,index) in student.hobby" :key="index">{{h}}</li>
+            <h4>朋友列表：</h4>
+            <li v-for="(f,index) in student.friends" :key="index">{{f.name}} -- {{f.age}}</li>
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                student: {
+                    name: '半夏天南星',
+                    age: 23,
+                    hobby: ['动漫', '电影', '爬山'],
+                    friends: [
+                        {
+                            name: 'Tom',
+                            age: 25,
+                        },
+                        {
+                            name: 'Jerry',
+                            age: 21,
+                        },
+                    ],
+                },
+            },
+        });
+    </script>
+</html>

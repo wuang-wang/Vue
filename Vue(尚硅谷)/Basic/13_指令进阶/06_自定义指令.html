@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>自定义指令</title>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <script src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="root">
+            <h3>当前n值： <span v-text="n"></span></h3>
+            <h3>扩大后的n值： <span v-big="n"></span></h3>
+            <button @click='n++'>点击+1</button>
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                n: 1,
+            },
+            directives: {
+                // 自定义函数何时会被调用：1、指令与元素成功绑定时  2、指令所在的模板被重新解析时
+                big(element, binging) {
+                    element.innerText = binging.value * 10;
+                },
+            },
+        });
+    </script>
+</html>

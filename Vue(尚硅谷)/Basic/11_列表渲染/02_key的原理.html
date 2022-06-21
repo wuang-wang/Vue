@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列表渲染</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h3>学生列表</h3>
+        <ul>
+            <li v-for="(p,index) in personList" :key="index">
+                {{p.name}} -- {{p.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+    new Vue({
+        el: '#root',
+        data: {
+            personList: [
+                { id: 1, name: '张三', age: 18 },
+                { id: 1, name: '李四', age: 19 },
+                { id: 1, name: '王五', age: 20 },
+            ]
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>监测对象</title>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <script src="../js/vue.js"></script>
+    </head>
+
+    <body></body>
+
+    <script>
+        let data = {
+            name: '半夏天南星',
+            address: '浙江 - 杭州',
+            student: {
+                sName: '张三',
+            },
+        };
+
+        // 创建一个监视的实例对象，用于监视data中属性的变化
+        const obs = new Observer(data);
+        console.log(obs);
+
+        // 准备一个vm实例对象
+        let vm = {};
+        vm._data = data = obs;
+
+        // Vue中也是采用递归的方法处理对象
+        function Observer(obj) {
+            if (typeof obj !== 'object' || obj == null) {
+                return obj;
+            }
+            // 汇总对象中所有的属性形成一个数组
+            const keys = Object.keys(obj); // Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和正常循环遍历该对象时返回的顺序一致
+            // 遍历
+            keys.forEach((k) => {
+                defineReactive(obj, k, obj[k]);
+            });
+        }
+
+        // 递归实现对象处理
+        function defineReactive(obj, k, value) {
+            // 递归对象的值，如果值为对象，也监测
+            Observer(value);
+            Object.defineProperty(this, k, {
+                get() {
+                    // 对于对象 我们在这里 收集依赖 watcher
+                    return obj[k];
+                },
+                set(val) {
+                    //给某个key设置值的时候 可能也是一个对象 也需要监听
+                    Observer(val);
+                    //对象： 在这里触发收集的依赖
+                    obj[k] = val;
+                },
+            });
+        }
+    </script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>监听属性-简写</title>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <script src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="root">
+            <h3>今天天气很{{info}}</h3>
+            <button @click="changeWeather">切换天气</button>
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true,
+            },
+            computed: {
+                info: function () {
+                    return this.isHot ? '炎热' : '凉爽';
+                },
+            },
+            methods: {
+                changeWeather() {
+                    this.isHot = !this.isHot;
+                },
+            },
+            // 方式一
+            watch: {
+                /* isHot: {
+                    // 初始化时让handler调用一次
+                    // immediate: true,
+                    // handler何时执行？当isHot发生改变时
+                    // handler接收两个参数，newValue：新值  与  oldValue：旧值
+                    handler(newValue, oldValue) {
+                        console.log(newValue, oldValue);
+                    },
+                }, */
+                // 简写，简写时，只允许存在一个配置项，即handler
+                isHot(newValue, oldValue) {
+                    console.log(newValue, oldValue);
+                },
+            },
+        });
+    </script>
+</html>

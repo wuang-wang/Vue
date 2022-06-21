@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <script src="../js/vue.js"></script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h3>欢迎访问{{name}}的文章</h3>
+        <!-- 阻止默认事件（常用） -->
+        <a href="https://juejin.cn/user/2700056291190584/posts" @click.prevent='showInfo'>阻止默认事件</a>
+        <!-- 阻止事件冒泡（常用） -->
+        <div @click='showInfo'>
+            <button @click.stop='showInfo'>阻止事件冒泡</button>  
+        </div>
+        <!-- 事件只触发一次（常用） -->
+        <button @click.once='showInfo'>事件只触发一次</button>  
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+    new Vue({
+        el: '#root',
+        data: {
+            name: '半夏天南星'
+        },
+        methods: {
+            showInfo() {
+                alert('准备跳转')
+            }
+        }
+    })
+</script>
+
+</html>

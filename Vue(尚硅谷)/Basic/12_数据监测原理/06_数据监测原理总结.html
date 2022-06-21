@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <button @click="student.age++">年龄+1</button>
+            <button @click="addSex">添加列表属性，默认值： 男</button>
+            <button @click='student.sex = "未知"'>修改性别</button>
+            <button @click="addFriend">在列表首位添加一个朋友</button>
+            <button @click="updateName">修改第一个朋友的名字为：张三</button>
+            <button @click="addHobby">添加一个爱好</button>
+            <button @click="updateHobby">修改第一个爱好为：烹饪</button>
+            <h3>学生姓名： {{student.name}}</h3>
+            <h3>学生年龄： {{student.age}}</h3>
+            <h3 v-if="student.sex">学生性别： {{student.sex}}</h3>
+            <h4>爱好：</h4>
+            <li v-for="(h,index) in student.hobby" :key="'i'+index">{{h}}</li>
+            <h4>朋友列表：</h4>
+            <li v-for="(f,index) in student.friends" :key="'j'+index">{{f.name}} -- {{f.age}}</li>
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                student: {
+                    name: '半夏天南星',
+                    age: 23,
+                    hobby: ['动漫', '电影', '爬山'],
+                    friends: [
+                        {
+                            name: 'Tom',
+                            age: 25,
+                        },
+                        {
+                            name: 'Jerry',
+                            age: 21,
+                        },
+                    ],
+                },
+            },
+            methods: {
+                addSex() {
+                    // 方式一
+                    // Vue.set(this.student,'sex','男')
+                    // 方式二
+                    this.$set(this.student, 'sex', '男');
+                },
+                addFriend() {
+                    this.student.friends.unshift({
+                        name: 'Jack',
+                        age: 24,
+                    });
+                },
+                updateName() {
+                    this.student.friends[0].name = '张三';
+                },
+                addHobby() {
+                    this.student.hobby.push('学习');
+                },
+                updateHobby() {
+                    // this.student.hobby.splice(0,1,'烹饪')
+                    // Vue.set(this.student.hobby, 0, '烹饪');
+                    this.$set(this.student.hobby, 0, '烹饪');
+                },
+            },
+        });
+    </script>
+</html>

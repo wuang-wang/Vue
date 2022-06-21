@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h3>hello，{{name}}</h3>
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+    /*
+    // el两种写法
+    const v = new Vue( {
+        el: '#root',  // el第一种写法
+        data: {
+            name: '半夏天南星'
+        }
+    })
+    // el第二种写法
+    v.$mount('#root');
+    */
+
+    // data两种写法
+    new Vue({
+        el: '#root',
+        // data第一种写法，对象式
+        // data: {
+        //     name: '半夏天南星'
+        // }
+        // data第二种写法，函数式
+        data() {
+            console.log(this);  // 此处的this是Vue实例对象
+            return{
+                name: '半夏天南星'
+            }
+        }
+    })
+</script>
+
+</html>
